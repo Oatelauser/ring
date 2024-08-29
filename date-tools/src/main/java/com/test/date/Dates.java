@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -67,6 +68,29 @@ public abstract class Dates {
      */
     public static Date from(long milliseconds) {
         return new Date(milliseconds);
+    }
+
+    /**
+     * 获取当前时间的整点，例如20:00:00.000
+     */
+    public static Date currentHourlyTime() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
+    }
+
+    /**
+     * 获取当前时间的下一个整点，例如20:00:00.000
+     */
+    public static Date nextHourlyTime() {
+        Date date = currentHourlyTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.HOUR_OF_DAY, 1);
+        return calendar.getTime();
     }
 
 }

@@ -227,6 +227,22 @@ public abstract class LocalDateTimes {
         Instant instant = Instant.ofEpochMilli(milliseconds);
         return LocalDateTime.ofInstant(instant, zoneId);
     }
+
+    /**
+     * 获取当前时间的整点，例如20:00:00.000
+     */
+    public static LocalDateTime currentHourlyTime() {
+        return LocalDateTime.now().withMinute(0)
+                .withSecond(0).withNano(0);
+    }
+
+    /**
+     * 获取当前时间的下一个整点，例如20:00:00.000
+     */
+    public static LocalDateTime nextHourlyTime() {
+        return currentHourlyTime().plusHours(1);
+    }
+
     //----------------------------------------------------------------combine----------------------------------------------------------------------------
 
     /**
